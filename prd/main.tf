@@ -17,9 +17,22 @@ provider "aws" {
   region = "ap-northeast-1"
 }
 
-module "nqv-website" {
-  source = "../resources"
-  env    = "prd"
+provider "aws" {
+  region = "us-east-1"
+  alias  = "virginia"
 }
 
+module "nqv-website" {
+  source              = "../resources"
+  env                 = "prd"
+  acm_certificate_arn = module.nqv-website-virginia.acm_certificate_arn
+}
+
+module "nqv-website-virginia" {
+  source = "../resources_virginia"
+  env    = "prd"
+  providers = {
+    aws = aws.virginia
+  }
+}
 
