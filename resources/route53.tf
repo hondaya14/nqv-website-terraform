@@ -14,3 +14,15 @@ resource "aws_route53_record" "www" {
 data "aws_route53_zone" "zone" {
   name = "nqvno.net"
 }
+
+resource "aws_route53_record" "resume" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "resume.nqvno.net"
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.resume_s3_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.resume_s3_distribution.hosted_zone_id
+    evaluate_target_health = true
+  }
+}

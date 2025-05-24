@@ -1,4 +1,8 @@
 
-data "aws_acm_certificate" "nqv_no_certificate" {
+data "aws_acm_certificate" "root" {
   domain = "nqvno.net"
+}
+
+data "aws_acm_certificate" "sub" {
+  domain = "*.nqvno.net"
 }

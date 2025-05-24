@@ -25,7 +25,8 @@ provider "aws" {
 module "nqv-website" {
   source              = "../resources"
   env                 = "prd"
-  acm_certificate_arn = module.nqv-website-virginia.acm_certificate_arn
+  root_acm_certificate_arn = module.nqv-website-virginia.root_acm_certificate_arn
+  sub_acm_certificate_arn  = module.nqv-website-virginia.sub_acm_certificate_arn
 }
 
 module "nqv-website-virginia" {

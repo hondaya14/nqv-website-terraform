@@ -2,6 +2,9 @@
 variable "env" {
   type = string
 }
-variable "acm_certificate_arn" {
+variable "root_acm_certificate_arn" {
+  type = string
+}
+variable "sub_acm_certificate_arn" {
   type = string
 }
